@@ -9,9 +9,12 @@ function CodeEntry() {
   const handleRetrieval = async () => {
     try {
       let num = parseInt(codeInput);
-      const response = await axios.get("http://localhost:5000/get-data", {
-        params: { id: num },
-      });
+      const response = await axios.get(
+        "https://onlineclipboard-kkaz.onrender.com/get-data",
+        {
+          params: { id: num },
+        }
+      );
       setRetrievedData(response.data[0].content);
     } catch (err) {
       console.log("error while handling get data : " + err);

@@ -9,9 +9,12 @@ function TextBox() {
   const handleTextEntry = async () => {
     console.log("entered text : " + inputValue);
     try {
-      const response = await axios.post("http://localhost:5000/accept-req", {
-        text: inputValue,
-      });
+      const response = await axios.post(
+        "https://onlineclipboard-kkaz.onrender.com/accept-req",
+        {
+          text: inputValue,
+        }
+      );
       setCodeValue(response.data.code);
       console.log("");
     } catch (err) {
