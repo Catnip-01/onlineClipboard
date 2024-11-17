@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const jwt = require("jsonwebtoken");
 
 dotenv.config();
 const app = express();
@@ -57,6 +58,7 @@ app.get("/get-data", async (req, res) => {
 });
 
 const port = process.env.port || 5000;
+// const token = jwt.sign({userId : user._id}, )
 
 mongoose
   .connect(process.env.MONGO_URI, {
