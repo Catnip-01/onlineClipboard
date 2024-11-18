@@ -40,8 +40,8 @@ function CodeEntry() {
         </button>
       </div>
       {retrievedData && (
-        <div className="mt-4 flex flex-col text-white bg-objectBg justify-end p-4 rounded-lg shadow-inner w-full max-w-lg mx-auto">
-          <div className="flex justify-end mb-2">
+        <div className="mt-4 flex flex-col text-white bg-objectBg justify-end p-4 rounded-lg shadow-inner w-full max-w-auto mx-auto">
+          <div className="flex justify-end mb-2 sticky top-0">
             <CopyButton copyText={retrievedData} />
           </div>
           <pre className="text-sm sm:text-base w-full whitespace-pre-wrap overflow-x-auto">

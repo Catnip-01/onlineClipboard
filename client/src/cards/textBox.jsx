@@ -24,7 +24,7 @@ function TextBox() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gptGray-900 text-gray-800">
+    <div className="min-h-screen flex flex-col items-center bg-gptGray-900 text-gray-800 min-w-fit">
       {/* Header */}
       <header className="bg-background w-full py-4 text-white text-center shadow-lg">
         <h1 className="text-2xl font-semibold">Clipboard Manager</h1>
@@ -49,7 +49,7 @@ function TextBox() {
             Upload to Clipboard
           </button>
           {codeValue && (
-            <div className="text-gray-300 items-center mt-3 border flex flex-row border-white rounded justify-around w-4/12">
+            <div className="text-gray-300 items-center mt-3 border flex flex-row border-white rounded justify-around lg:w-4/12 sm:w-fit pl-3">
               <p className="">
                 Your code: <span className="font-bold">{codeValue}</span>
               </p>
