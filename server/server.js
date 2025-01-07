@@ -59,7 +59,7 @@ app.get("/get-data", async (req, res) => {
 
 const port = process.env.port || 5000;
 // const token = jwt.sign({userId : user._id}, )
-const mongoUri = "mongodb+srv://shantanupandey03:shantanupandey03@cluster0.yfg5y.mongodb.net/onlineClipboard/?retryWrites=true&w=majority&appName=Cluster0";
+const mongoUri = "mongodb+srv://shantanupandey03:shantanupandey03@cluster0.yfg5y.mongodb.net/onlineClipboard?retryWrites=true&w=majority&appName=Cluster0";
 
 mongoose
   .connect(mongoUri, {
