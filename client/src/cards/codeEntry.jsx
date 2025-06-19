@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react"; // Import useRef and useEffect
 import axios from "axios";
 import CopyButton from "./copyButton";
 import { motion, AnimatePresence } from "framer-motion";
@@ -11,15 +11,28 @@ function CodeEntry() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  // 1. Create a ref for the retrieved data section
+  const retrievedDataRef = useRef(null);
+
+  // 2. useEffect to scroll when retrievedData is available
+  useEffect(() => {
+    if (retrievedData && retrievedDataRef.current) {
+      retrievedDataRef.current.scrollIntoView({
+        behavior: "smooth", // Smooth scrolling
+        block: "start",     // Aligns the top of the element with the top of the scroll area
+      });
+    }
+  }, [retrievedData]); // This effect runs whenever retrievedData changes
+
   const handleRetrieval = async () => {
     if (!codeInput.trim()) {
       setError("Please enter a PIN to retrieve.");
-      setRetrievedData("");
+      setRetrievedData(""); // Clear previous data
       return;
     }
     setIsLoading(true);
-    setError(null);
-    setRetrievedData("");
+    setError(null); // Clear previous errors
+    setRetrievedData(""); // Clear previous data on new attempt
 
     try {
       let num = parseInt(codeInput, 10);
@@ -63,13 +76,11 @@ function CodeEntry() {
       transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
       className="max-w-7xl mx-auto px-4 w-full"
     >
-      {/* Input and button section - REMOVED max-w-lg from here */}
       <motion.div
         initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, ease: "easeOut", delay: 0.4 }}
         className="bg-zinc-900 w-full mx-auto shadow-xl rounded-xl p-8 flex flex-col items-center justify-center border border-neutral-800"
-        // ^^^ max-w-lg was removed from this line ^^^
       >
         <motion.input
           className="p-4 border bg-neutral-900 text-neutral-300 border-neutral-700 rounded-lg text-center focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-neutral-500 font-mono w-full"
@@ -111,7 +122,9 @@ function CodeEntry() {
 
       <AnimatePresence>
         {retrievedData && (
+          // 3. Attach the ref to the div that displays the retrieved data
           <motion.div
+            ref={retrievedDataRef}
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
