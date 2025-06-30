@@ -17,6 +17,10 @@ const clipboardSchema = new mongoose.Schema({
 
 const clipboardModel = mongoose.model("onlineClipboard", clipboardSchema);
 
+app.get("/", (req, res)=>{
+  res.send("hi there! this is online clipboard");
+});
+
 app.post("/add-mongo", async (req, res) => {
   const clipping = new clipboardModel(req.body);
   try {
